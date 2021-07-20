@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/go-magic/mid-server/register"
-	"github.com/go-magic/mid-server/schedule"
-	"github.com/go-magic/mid-server/task"
+	"github.com/go-magic/h-server/register"
+	"github.com/go-magic/h-server/schedule"
+	"github.com/go-magic/h-server/task"
 )
 
 type HttpTask struct {
@@ -70,7 +70,7 @@ func initTasks() []task.Task {
 func TestNewServer(t *testing.T) {
 	center := register.NewRegisterCenter()
 	center.Register("http_get", NewHttpGet)
-	sch := schedule.NewSchedule(100, center)
+	sch := schedule.NewSchedule(1, center)
 	subResult, err := sch.Execute(context.Background(), initTasks())
 	if err != nil {
 		t.Fatal(err)
